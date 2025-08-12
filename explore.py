@@ -64,8 +64,3 @@ run_query("""
 """)
 
 #Qual o índice de individamento de todas as cooperativas de crédito em cada mês de referência?
-
-
-
-#bp_df = pd.read_sql("SELECT * FROM bp;", conn)
-
