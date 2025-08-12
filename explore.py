@@ -63,4 +63,24 @@ run_query("""
     GROUP BY DATA_BASE
 """)
 
+#Qual o índice de endividamento de cada cooperativa de crédito em cada mês de referência?
+print("Índice de Endividamento (Passivo/Ativo):")
+run_query("""SELECT 
+            DATA_BASE, CNPJ, CASE WHEN SUM(CASE WHEN CONTA = 40000000 THEN saldo ELSE 0 END) / NULLIF(SUM(CASE WHEN CONTA in (10000000, 20000000, 30000000) THEN saldo ELSE 0 END), 0) > 10 THEN 10
+                ELSE SUM(CASE WHEN CONTA = 40000000 THEN saldo ELSE 0 END) / NULLIF(SUM(CASE WHEN CONTA in (10000000, 20000000, 30000000) THEN saldo ELSE 0 END), 0) END AS indice
+        FROM bp
+        GROUP BY DATA_BASE, CNPJ
+        """)
+
 #Qual o índice de individamento de todas as cooperativas de crédito em cada mês de referência?
+print("Índice de Endividamento (Passivo/Ativo):")
+run_query("""
+    SELECT DATA_BASE, ROUND(AVG(indice), 4) AS media_indice FROM 
+        (SELECT 
+            DATA_BASE, CNPJ, CASE WHEN SUM(CASE WHEN CONTA = 40000000 THEN saldo ELSE 0 END) / NULLIF(SUM(CASE WHEN CONTA in (10000000, 20000000, 30000000) THEN saldo ELSE 0 END), 0) > 10 THEN 10
+                ELSE SUM(CASE WHEN CONTA = 40000000 THEN saldo ELSE 0 END) / NULLIF(SUM(CASE WHEN CONTA in (10000000, 20000000, 30000000) THEN saldo ELSE 0 END), 0) END AS indice
+        FROM bp
+        GROUP BY DATA_BASE, CNPJ
+        )
+    GROUP BY DATA_BASE
+""")
