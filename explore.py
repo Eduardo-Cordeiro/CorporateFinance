@@ -102,4 +102,3 @@ a = queryintoDF("""
         )
     GROUP BY DATA_BASE
 """)
-print(a.head())
