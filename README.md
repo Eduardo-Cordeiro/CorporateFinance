@@ -18,4 +18,4 @@ The `explore.py` script is used for loading, processing, and analyzing the balan
 ## Visualizing Data
 The `st_app.py` script provides an interactive web interface for visualizing and querying the balance sheet data using Streamlit. Users can filter data by period and institution, view account balances, and execute custom SQL queries directly from the browser. The app displays results in a user-friendly format, making it easy to analyze.
 
-You can access the app through this link.
+You can access the app through this [link](https://corporatefinance-ftaofx9a7pp6m2dfqiybgc.streamlit.app/).
